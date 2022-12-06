@@ -19,54 +19,6 @@ collections:
   # - name: kewlfft.aur
 
 roles:
-  # Divona
-  # ========================================
-  # - name: divona.debug
-  #   src: git@github.com:divona-roles/ansible-debug-role.git
-  #   scm: git
-  #   version: v1.0.0
-  # - name: divona.bootstrap
-  #   src: git@github.com:divona-roles/ansible-bootstrap-role.git
-  #   scm: git
-  #   version: v1.1.0
-  # - name: divona.motd
-  #   src: git@github.com:divona-roles/ansible-motd-role.git
-  #   scm: git
-  #   version: v2.0.0
-  - name: divona.base
-    src: git@github.com:divona-roles/ansible-base-role.git
-    scm: git
-    version: v3.2.0
-  - name: divona.desktop
-    src: git@github.com:divona-roles/ansible-desktop-role.git
-    scm: git
-    version: v3.0.0
-  - name: divona.editors
-    src: git@github.com:divona-roles/ansible-editors-role.git
-    scm: git
-    version: v2.3.0
-  - name: divona.languages
-    src: git@github.com:divona-roles/ansible-languages-role.git
-    scm: git
-    version: v1.0.0
-  - name: divona.cloud
-    src: git@github.com:divona-roles/ansible-cloud-role.git
-    scm: git
-    version: v1.0.1
-  - name: divona.wm
-    src: git@github.com:divona-roles/ansible-window-managers-role.git
-    scm: git
-    version: v2.0.0
-  - name: divona.finish
-    src: git@github.com:divona-roles/ansible-finish-role.git
-    scm: git
-    version: v1.1.0
-
-  # External
-  # ========================================
-
-  - src: markosamuli.asdf
-    version: v1.1.0
   - src: gantsign.golang
     version: 3.0.3
   # https://github.com/hurricanehrndz/ansible-rustup/issues/4
