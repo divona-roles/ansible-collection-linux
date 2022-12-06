@@ -1,0 +1,19 @@
+---
+- name: Yum | Install Docker
+  ansible.builtin.yum:
+    name: "{{ packages }}"
+    state: present
+  vars:
+    packages:
+      - docker
+
+- name: System | Add Docker group
+  ansible.builtin.group:
+    name: docker
+    state: present
+
+- name: System | Add user to Docker group
+  ansible.builtin.user:
+    name: "{{ user }}"
+    groups: docker
+    append: true

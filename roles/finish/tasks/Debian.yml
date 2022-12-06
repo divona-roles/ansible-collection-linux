@@ -1,0 +1,4 @@
+---
+- name: APT | Remove useless packages from the cache
+  ansible.builtin.apt:
+    autoclean: true

@@ -1,0 +1,203 @@
+---
+- name: Pacman | Update database
+  community.general.pacman:
+    update_cache: true
+
+- name: Pacman | Install distribution tools
+  community.general.pacman:
+    name: "{{ packages }}"
+    state: present
+  vars:
+    packages:
+      - pacman-contrib
+
+- name: System | Set timezone
+  community.general.timezone:
+    name: "{{ timesync_timezone }}"
+  # notify: systemd-timesyncd configuration changed
+
+- name: System | Configure systemd-timesyncd
+  ansible.builtin.template:
+    src: timesyncd.conf.j2
+    dest: /etc/systemd/timesyncd.conf
+    mode: 0644
+    owner: root
+    group: root
+  notify: systemd-timesyncd configuration changed
+
+- name: System | Start and enable systemd-timesyncd
+  ansible.builtin.systemd:
+    name: systemd-timesyncd.service
+    enabled: yes
+    state: started
+
+- name: Shell | Install Bash
+  community.general.pacman:
+    name: "{{ packages }}"
+    state: present
+  vars:
+    packages:
+      - bash-completion
+
+- name: Shell | Install Zsh
+  community.general.pacman:
+    name: "{{ packages }}"
+    state: present
+  vars:
+    packages:
+      - zsh-completions
+      - zsh-autosuggestions
+
+- name: Shell | Install Fish
+  community.general.pacman:
+    name: "{{ packages }}"
+    state: present
+  vars:
+    packages:
+      - fish
+
+- name: Shell | Install core tools
+  community.general.pacman:
+    name: "{{ packages }}"
+    state: present
+  vars:
+    packages:
+      - which
+      - screenfetch
+      - tree
+      - tmux
+      - ncdu
+      - feh
+      - nnn
+      - htop
+      - man-db
+      - dunst
+      - git
+      - tig
+      - unzip
+      - ccze
+      - dmidecode
+      - gitui
+
+- name: Packages | Install terminal emulators
+  community.general.pacman:
+    name: "{{ packages }}"
+    state: present
+  vars:
+    packages:
+      # - termite
+      - alacritty
+
+- name: Packages | Install networks tools
+  community.general.pacman:
+    name: "{{ packages }}"
+    state: present
+  vars:
+    packages:
+      - dhclient
+      - iw
+      - openssh
+      - wget
+      - curl
+      - nghttp2
+      - bind-tools
+      - mtr
+      - traceroute
+      - openbsd-netcat
+      - ipcalc
+      - nmap
+      - ngrep
+      - nethogs
+      - bandwhich
+      - wireguard-tools
+
+- name: Packages | Install modern Unix tools
+  community.general.pacman:
+    name: "{{ packages }}"
+    state: present
+  vars:
+    packages:
+      - fzf
+      - ripgrep
+      - exa
+      - fd
+      - bat
+      - lsd
+      - diskus
+
+- name: Packages | Install file system tools
+  community.general.pacman:
+    name: "{{ packages }}"
+    state: present
+  vars:
+    packages:
+      - dosfstools
+      - mtools
+      - exfat-utils
+      - xdg-utils
+      - xdg-user-dirs
+      - xdg-user-dirs-gtk
+      - xplr
+
+- name: Packages | Install monitoring tools
+  community.general.pacman:
+    name: "{{ packages }}"
+    state: present
+  vars:
+    packages:
+      - btop
+      - kmon
+
+- name: Laptop | Install powermanagement
+  community.general.pacman:
+    name:
+      - tlp
+    state: present
+
+- name: Laptop | Make sure powermanagement service unit is running
+  ansible.builtin.systemd:
+    state: started
+    name: tlp
+
+# - name: Create the `aur_builder` user
+#   ansible.builtin.user:
+#     name: aur_builder
+#     create_home: no
+#     group: wheel
+
+# - name: Allow the `aur_builder` user to run `sudo pacman` without a password
+#   ansible.builtin.lineinfile:
+#     path: /etc/sudoers.d/11-install-aur_builder
+#     line: 'aur_builder ALL=(ALL) NOPASSWD: /usr/bin/pacman'
+#     create: yes
+#     validate: 'visudo -cf %s'
+
+- name: Python | Install tools
+  community.general.pacman:
+    name: "{{ packages }}"
+    state: present
+  vars:
+    packages:
+      - python-pip
+      - python-virtualenv
+      - python-poetry
+
+- name: Ruby | Install tools
+  community.general.pacman:
+    name: "{{ packages }}"
+    state: present
+  vars:
+    packages:
+      - rubygems
+
+- name: Yubikey | Install tools
+  community.general.pacman:
+    name: "{{ packages }}"
+    state: present
+  vars:
+    packages:
+      - gnupg
+      - pcsclite
+      - ccid
+      - yubikey-personalization
+      # - hopenpgp-tools

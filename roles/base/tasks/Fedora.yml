@@ -1,0 +1,58 @@
+---
+- name: Packages | Install shell tools
+  dnf:
+    name: "{{ packages }}"
+    state: present
+  vars:
+    packages:
+      - bash-completion
+      - fzf
+      - tree
+      - tmux
+      - ncdu
+      - feh
+
+- name: Packages | Install terminal emulators
+  dnf:
+    name: "{{ packages }}"
+    state: present
+  vars:
+    packages:
+      - terminator
+
+- name: Packages | Install network tools
+  dnf:
+    name: "{{ packages }}"
+    state: present
+  vars:
+    packages:
+      - openssh
+      - wget
+      - curl
+      - ngrep
+
+- name: Packages | Install defaults packages
+  dnf:
+    name: "{{ packages }}"
+    state: present
+  vars:
+    packages:
+      - man-db
+      - dunst
+      - git
+      - gnupg
+      - tig
+      - unzip
+      - logrotate
+      - rsyslog
+      - sysstat
+      - mlocate
+      - ccze
+
+- name: Packages | Install modern Unix tools
+  dnf:
+    name: "{{ packages }}"
+    state: present
+  vars:
+    packages:
+      - fd-find

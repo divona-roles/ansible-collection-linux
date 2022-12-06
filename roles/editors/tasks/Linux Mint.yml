@@ -1,0 +1,9 @@
+---
+- name: APT | Update database
+  ansible.builtin.apt:
+    update_cache: true
+
+- name: Emacs | Install
+  ansible.builtin.apt:
+    name: emacs
+    state: present

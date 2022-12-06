@@ -1,0 +1,42 @@
+---
+- name: Install web applications
+  ansible.builtin.yum:
+    name: "{{ packages }}"
+    state: present
+  vars:
+    packages:
+      - firefox
+
+- name: Install graphics applications
+  ansible.builtin.yum:
+    name: "{{ packages }}"
+    state: present
+  vars:
+    packages:
+      - gimp
+      - inkscape
+
+- name: Install video applications
+  ansible.builtin.yum:
+    name: "{{ packages }}"
+    state: present
+  vars:
+    packages:
+      - vlc
+
+- name: Install communications applications
+  ansible.builtin.yum:
+    name: "{{ packages }}"
+    state: present
+  vars:
+    packages:
+      - irssi
+      - vinagre
+
+- name: Install documentation applications
+  ansible.builtin.yum:
+    name: "{{ packages }}"
+    state: present
+  vars:
+    packages:
+      - evince

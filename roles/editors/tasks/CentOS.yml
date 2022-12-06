@@ -1,0 +1,10 @@
+---
+- name: Emacs | Install
+  ansible.builtin.yum:
+    name: emacs
+    state: present
+
+- name: Neovim | Install
+  ansible.builtin.yum:
+    name: neovim
+    state: present

@@ -1,0 +1,48 @@
+---
+- name: Packages | Install shell tools
+  apt:
+    name: "{{ packages }}"
+    state: present
+  vars:
+    packages:
+      - bash-completion
+      - tree
+      - tmux
+      - ncdu
+      - feh
+
+- name: Packages | Install terminal emulators
+  apt:
+    name: "{{ packages }}"
+    state: present
+  vars:
+    packages:
+      - terminator
+
+- name: Packages | Install networks tools
+  apt:
+    name: "{{ packages }}"
+    state: present
+  vars:
+    packages:
+      - openssh-server
+      - wget
+      - curl
+      - ngrep
+
+- name: Packages | Install defaults packages
+  apt:
+    name: "{{ packages }}"
+    state: present
+  vars:
+    packages:
+      - man-db
+      - dunst
+      - git
+      - gnupg
+      - tig
+      - unzip
+      - logrotate
+      - rsyslog
+      - sysstat
+      - mlocate

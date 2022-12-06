@@ -1,0 +1,74 @@
+---
+- name: YUM | Install EPEL Repository
+  yum:
+    name: "{{ packages }}"
+    state: present
+  vars:
+    packages:
+      - epel-release
+
+- name: YUM | Enable Nux-Desktop repository
+  yum_repository:
+    name: nux-dextop
+    description: Nux.Ro RPMs for general desktop use
+    baseurl: "{{ nux_url }} {{ nux_mirror url }}"
+    gpgkey: http://li.nux.ro/download/nux/RPM-GPG-KEY-nux.ro
+    gpgcheck: true
+    skip_if_unavailable: true
+
+- name: YUM | Enable Repoforge repository
+  yum_repository:
+    name: rpmforge
+    description: RPMforge YUM repo
+    file: external_repos
+    baseurl: http://apt.sw.be/redhat/el{{ ansible_distribution_major_version }}/en/$basearch/rpmforge
+    mirrorlist: http://mirrorlist.repoforge.org/el{{ ansible_distribution_major_version }}/mirrors-rpmforge
+    enabled: true
+
+- name: Packages | Install shell tools
+  yum:
+    name: "{{ packages }}"
+    state: present
+  vars:
+    packages:
+      - which
+      - tmux
+      - tree
+      - ncdu
+
+- name: Packages | Install default packages
+  yum:
+    name: "{{ packages }}"
+    state: present
+  vars:
+    packages:
+      - ngrep
+      - git
+      - gnupg2
+      - tig
+      - unzip
+      - rsyslog
+
+- name: Packages | Install terminal emulators
+  yum:
+    name: "{{ packages }}"
+    state: present
+  vars:
+    packages:
+      - terminator
+
+- name: Packages | Install network tools
+  yum:
+    name: "{{ packages }}"
+    state: present
+  vars:
+    packages:
+      - openssh
+      - wget
+      - curl
+      - net-tools
+      - mtr
+      - traceroute
+      - nmap
+      - ngrep
+      - nethogs

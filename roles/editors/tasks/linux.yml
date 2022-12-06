@@ -1,0 +1,83 @@
+---
+- name: VSCode | Check installation
+  ansible.builtin.command: which code
+  register: vscode_installation
+  changed_when: false
+  ignore_errors: true
+  check_mode: false
+
+- name: VSCode | Get installed version
+  ansible.builtin.shell: |
+    set -o pipefail
+    {{ vscode_installation.stdout }} --version|head -1
+  when: not vscode_installation is failed
+  changed_when: false
+  check_mode: false
+  register: installed_vscode_version
+
+- name: VSCode | Installation is required
+  ansible.builtin.set_fact:
+    vscode_installation_required: "{{ vscode_installation is failed or installed_vscode_version.stdout != vscode_version }}"
+
+- name: VSCode | Installation
+  when:
+    - vscode_installation_required
+  block:
+    - name: VSCode | Upgrade
+      ansible.builtin.debug:
+        msg: VSCode from {{ installed_vscode_version.stdout }} to {{ vscode_version }}
+
+    - name: VSCode | Download archive
+      ansible.builtin.unarchive:
+        src: "{{ vscode_download_url }}"
+        dest: "{{ vscode_dir }}"
+        remote_src: true
+
+    - name: VSCode | Adding command to user path
+      ansible.builtin.file:
+        src: "{{ vscode_dir }}/{{ vscode_name }}/bin/code"
+        dest: /home/{{ user }}/bin/code
+        state: link
+
+# - name: Check VSCodium installation
+#   command: which vscodium
+#   register: vscodium_installation
+#   changed_when: false
+#   ignore_errors: true
+#   check_mode: false
+
+# - name: Get installed VSCodium version
+#   shell: |
+#     set -o pipefail
+#     {{ vscodium_installation.stdout }} -version|head -1
+#   when: not vscodium_installation is failed
+#   changed_when: false
+#   check_mode: false
+#   register: installed_vscodium_version
+
+# - name: VSCodium installation is required
+#   set_fact:
+#     vscodium_installation_required: "{{ vscodium_installation is failed or installed_vscodium_version.stdout != vscodium_version }}"
+
+# - name: VSCodium installation
+#   when:
+#     - vscodium_installation_required
+#   block:
+#     - name: Download VSCodium archive
+#       get_url:
+#         url: "{{ vscodium_download_url }}"
+#         dest: "/tmp/{{ vscodium_package_name }}"
+#         mode: 0600
+#         checksum: "{{ vscodium_checksum }}"
+#         force: true
+
+#     - name: Extract VSCodium archive
+#       unarchive:
+#         src: "/tmp/{{ vscodium_package_name }}"
+#         dest: "{{ vscodium_dir }}"
+
+#     - name: Adding VSCodium command to user path
+#       file:
+#         src: "{{ vscodium_dir }}/{{ vscodium_name }}/bin/vscodium"
+#         dest: /home/{{ user }}/bin/vscodium
+#         state: link

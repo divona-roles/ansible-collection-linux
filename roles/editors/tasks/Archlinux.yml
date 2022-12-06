@@ -1,0 +1,14 @@
+---
+- name: Pacman | Update database
+  community.general.pacman:
+    update_cache: true
+
+- name: Emacs | Install
+  community.general.pacman:
+    name: emacs
+    state: present
+
+- name: Neovim | Install
+  community.general.pacman:
+    name: neovim
+    state: present

@@ -1,0 +1,41 @@
+---
+- name: System | Ensure user exists
+  ansible.builtin.user:
+    name: "{{ user }}"
+    shell: /bin/zsh
+    groups: users
+    append: true
+
+- name: User | Create binary directory
+  ansible.builtin.file:
+    path: /home/{{ user }}/bin
+    owner: "{{ user }}"
+    group: "{{ user }}"
+    state: directory
+    mode: 0755
+
+- name: User | Create configuration directory
+  ansible.builtin.file:
+    path: /home/{{ user }}/etc
+    owner: "{{ user }}"
+    group: "{{ user }}"
+    state: directory
+    mode: 0755
+
+- name: User | Create XDG directories
+  ansible.builtin.file:
+    path: /home/{{ user }}/{{ item }}
+    owner: "{{ user }}"
+    group: "{{ user }}"
+    state: directory
+    mode: 0755
+  loop: "{{ xdg_dirs }}"
+
+- name: User | Create user directories
+  ansible.builtin.file:
+    path: /home/{{ user }}/{{ item }}
+    owner: "{{ user }}"
+    group: "{{ user }}"
+    state: directory
+    mode: 0755
+  loop: "{{ user_dirs }}"

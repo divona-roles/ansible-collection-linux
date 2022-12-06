@@ -1,0 +1,39 @@
+---
+- name: WindowManager | Install window manager
+  ansible.builtin.yum:
+    name: "{{ packages }}"
+    state: present
+  vars:
+    packages:
+      - i3
+      - i3status
+      - i3lock
+      - dmenu
+
+# - name: Install Openbox and tools
+#   ansible.builtin.yum:
+#     name: "{{ packages }}"
+#     state: present
+#   vars:
+#     packages:
+#       - openbox
+
+- name: WindowManager | Install commons tools
+  ansible.builtin.yum:
+    name: "{{ packages }}"
+    state: present
+  vars:
+    packages:
+      - conky
+      - thunar
+      - thunar-volman
+      - thunar-archive-plugin
+
+- name: WindowManager | Install XFCE
+  ansible.builtin.yum:
+    name: "{{ packages }}"
+    state: present
+  vars:
+    packages:
+      - "@xfce-desktop"
+      - urw-fonts

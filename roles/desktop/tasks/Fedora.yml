@@ -1,0 +1,56 @@
+---
+- name: Install web applications
+  ansible.builtin.dnf:
+    name: "{{ packages }}"
+    state: present
+  vars:
+    packages:
+      - chromium
+
+- name: Install multimedia applications
+  ansible.builtin.dnf:
+    name: "{{ packages }}"
+    state: present
+  vars:
+    packages:
+      - gimp
+      - inkscape
+
+- name: Install rpmfusion repo
+  ansible.builtin.dnf:
+    name: https://download1.rpmfusion.org/free/fedora/rpmfusion-free-release-$(rpm -E %fedora).noarch.rpm
+    state: present
+
+- name: Install video applications
+  ansible.builtin.dnf:
+    name: "{{ packages }}"
+    state: present
+  vars:
+    packages:
+      - vlc
+
+- name: Install communications applications
+  ansible.builtin.dnf:
+    name: "{{ packages }}"
+    state: present
+  vars:
+    packages:
+      - irssi
+      - vinagre
+      - rdesktop
+
+- name: Install documentation applications
+  ansible.builtin.dnf:
+    name: "{{ packages }}"
+    state: present
+  vars:
+    packages:
+      - evince
+
+- name: Install security tools
+  ansible.builtin.dnf:
+    name: "{{ packages }}"
+    state: present
+  vars:
+    packages:
+      - keepassxc

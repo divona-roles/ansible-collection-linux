@@ -1,0 +1,68 @@
+---
+- name: DNF | Install Virtualization tools
+  ansible.builtin.dnf:
+    name: "{{ packages }}"
+    state: present
+  vars:
+    packages:
+      - vagrant
+      - VirtualBox
+
+- name: YUM | Install yum utils
+  yum:
+    name: yum-utils
+    state: present
+
+# - name: Install device-mapper-persistent-data
+#   yum:
+#     name: device-mapper-persistent-data
+#     state: present
+
+# - name: Install lvm2
+#   yum:
+#     name: lvm2
+#     state: present
+
+- name: System | Add Docker repo
+  ansible.builtin.get_url:
+    url: https://download.docker.com/linux/centos/docker-ce.repo
+    dest: /etc/yum.repos.d/docer-ce.repo
+
+- name: System | Enable Docker Edge repo
+  community.general.ini_file:
+    dest: /etc/yum.repos.d/docer-ce.repo
+    section: 'docker-ce-edge'
+    option: enabled
+    mode: '0600'
+    value: "0"
+
+- name: System | Enable Docker Test repo
+  community.general.ini_file:
+    dest: /etc/yum.repos.d/docer-ce.repo
+    section: 'docker-ce-test'
+    option: enabled
+    mode: '0600'
+    value: "0"
+
+- name: System | Install Docker
+  yum:
+    name: docker-ce
+    state: present
+
+# - name: Start Docker service
+#   service:
+#     name: docker
+#     state: started
+#     enabled: true
+
+# - name: Start Docker service
+#   systemd:
+#     state: started
+#     daemon_reload: yes
+#     name: docker
+
+- name: System | Add user vagrant to docker group
+  ansible.builtin.user:
+    name: vagrant
+    groups: docker
+    append: true

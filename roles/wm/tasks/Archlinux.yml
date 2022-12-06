@@ -1,0 +1,53 @@
+---
+- name: System | Update database
+  community.general.pacman:
+    update_cache: true
+
+- name: WindowManager | Install i3 and tools
+  community.general.pacman:
+    name: "{{ packages }}"
+    state: present
+  vars:
+    packages:
+      - i3-wm
+      - i3status
+      - i3lock
+      - dmenu
+      - dunst
+      - rofi
+      - dex
+      - gendesk
+      - desktop-file-utils
+
+- name: WindowManager | Install windows managers tools
+  community.general.pacman:
+    name: "{{ packages }}"
+    state: present
+  vars:
+    packages:
+      - conky
+      - thunar
+      - thunar-volman
+      - thunar-archive-plugin
+
+- name: WindowManager | Install XFCE and tools
+  community.general.pacman:
+    name: "{{ packages }}"
+    state: present
+  vars:
+    packages:
+      - xfce4
+      # - xfce4-goodies
+      # - xfce4-notifyd
+
+- name: WindowManager | Install sway and tools
+  community.general.pacman:
+    name: "{{ packages }}"
+    state: present
+  vars:
+    packages:
+      - sway
+      - mako
+      - grim
+      - imv
+      - slurp

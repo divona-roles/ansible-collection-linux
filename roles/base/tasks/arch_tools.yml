@@ -1,0 +1,36 @@
+---
+- name: Yay | Check installation
+  ansible.builtin.command: which yay
+  register: yay_installation
+  changed_when: false
+  ignore_errors: true
+  check_mode: false
+
+- name: Yay | Get installed version
+  ansible.builtin.shell: |
+    set -o pipefail
+    {{ yay_installation.stdout }} --version|awk -F' ' '{ print $2}'|sed -e 's/v//g'
+  when: not yay_installation is failed
+  changed_when: false
+  check_mode: false
+  register: installed_yay_version
+
+- name: Yay | Installation is required
+  ansible.builtin.set_fact:
+    yay_installation_required: "{{ yay_installation is failed or installed_yay_version.stdout != yay_version }}"
+
+- name: Yay | Install
+  ansible.builtin.unarchive:
+    src: "{{ yay_download_url }}"
+    dest: "{{ yay_dir }}"
+    remote_src: true
+  when:
+    - yay_installation_required
+
+- name: Yay | Adding command to user path
+  ansible.builtin.file:
+    src: "{{ yay_install_dir }}/yay"
+    dest: /home/{{ user }}/bin/yay
+    state: link
+  when:
+    - yay_installation_required

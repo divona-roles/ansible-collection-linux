@@ -1,0 +1,8 @@
+---
+# handlers file for base
+
+- name: Restart systemd-timesyncd
+  ansible.builtin.service:
+    name: systemd-timesyncd.service
+    state: restarted
+  listen: systemd-timesyncd configuration changed

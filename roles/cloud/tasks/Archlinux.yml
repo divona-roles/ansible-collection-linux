@@ -1,0 +1,55 @@
+---
+- name: Pacman | Update database
+  community.general.pacman:
+    update_cache: true
+
+- name: Pacman | Install container tools
+  community.general.pacman:
+    name: "{{ packages }}"
+    state: present
+  vars:
+    packages:
+      - docker
+      - docker-compose
+      - podman
+      - buildah
+      # - podman-docker => replace Docker or not
+
+- name: System | Add Docker group
+  ansible.builtin.group:
+    name: docker
+    state: present
+
+- name: Pacman | Install virtualization tools
+  community.general.pacman:
+    name: "{{ packages }}"
+    state: present
+  vars:
+    packages:
+      - virtualbox
+      - virtualbox-host-modules-arch
+      - libvirt
+      - qemu
+      - virt-manager
+      - dnsmasq
+      - bridge-utils
+
+- name: Pacman | Install Vagrant
+  community.general.pacman:
+    name: "{{ packages }}"
+    state: present
+  vars:
+    packages:
+      - vagrant
+
+- name: System | Add user to cloud groups
+  ansible.builtin.user:
+    name: "{{ user }}"
+    groups: docker, libvirt, kvm
+    append: true
+
+- name: SystemD | Start Docker service
+  ansible.builtin.systemd:
+    state: started
+    daemon_reload: true
+    name: docker

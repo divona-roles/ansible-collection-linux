@@ -1,0 +1,17 @@
+---
+# defaults file for editors
+
+vscode_name: "VSCode-linux-x64"
+vscode_version: 1.73.1
+# vscode_build: 1557957899
+# vscode_package_name: "code-stable-code_{{ vscode_build }}_amd64.tar.gz"
+# vscode_download_url: https://vscode-update.azurewebsites.net/{{ vscode_version }}/linux-x64/stable
+vscode_download_url: https://update.code.visualstudio.com/{{ vscode_version }}/linux-x64/stable
+vscode_dir: /home/{{ user }}/Applications
+
+# vscodium_version: 1.34.0
+# vscodium_package_name: VSCodium-linux-x64-{{ vscodium_version }}.tar.gz
+# vscodium_name: "VSCodium"
+# vscodium_checksum: "sha256:75d3c18af8ca8d9f59cc55b0709cd86173efe3ee7d191085a09410fe8b1918ef"
+# vscodium_download_url: https://github.com/VSCodium/vscodium/releases/download/{{ vscodium_version }}/{{ vscodium_package_name }}
+# vscodium_dir: /home/{{ user }}/Applications

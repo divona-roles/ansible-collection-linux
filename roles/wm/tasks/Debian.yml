@@ -1,0 +1,46 @@
+---
+- name: System | Update database
+  ansible.builtin.apt:
+    update_cache: true
+
+- name: WindowManager | Install i3 and tools
+  ansible.builtin.apt:
+    pkg: "{{ packages }}"
+    state: present
+  vars:
+    packages:
+      - i3
+      - i3lock
+      - dmenu
+      - rofi
+
+# - name: Install Openbox and tools
+#   ansible.builtin.apt:
+#     pkg: "{{ packages }}"
+#     state: present
+#   vars:
+#     packages:
+#       - openbox
+#       - obconf
+#       - obmenu
+
+- name: WindowManager | Install commons tools
+  ansible.builtin.apt:
+    pkg: "{{ packages }}"
+    state: present
+  vars:
+    packages:
+      - conky-all
+      - thunar
+      - thunar-volman
+      - thunar-archive-plugin
+
+- name: WindowManager | Install XFCE
+  ansible.builtin.apt:
+    pkg: "{{ packages }}"
+    state: present
+  vars:
+    packages:
+      - xfce4
+      # - xfce4-goodies
+      - xfce4-notifyd

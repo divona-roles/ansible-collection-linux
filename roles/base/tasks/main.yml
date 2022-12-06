@@ -1,0 +1,36 @@
+---
+- name: Directories for Unix
+  block:
+    - include_tasks: unix.yml
+  when: (ansible_distribution == 'Debian' or
+         ansible_distribution == 'Archlinux' or
+         ansible_distribution == 'CentOS' or
+         ansible_distribution == 'Linux Mint' or
+         ansible_distribution == 'Fedora')
+  become: true
+  become_user: root
+
+- name: Include OS-specific tasks
+  block:
+    - include_tasks: "{{ ansible_distribution }}.yml"
+  when: (ansible_distribution == 'Archlinux' or
+         ansible_distribution == 'CentOS' or
+         ansible_distribution == 'Debian' or
+         ansible_distribution == 'Fedora' or
+         ansible_distribution == 'Linux Mint')
+  become: true
+  become_user: root
+
+- name: Tools for Linux
+  block:
+    - include_tasks: "linux.yml"
+  when: (ansible_distribution == 'Debian' or
+         ansible_distribution == 'Archlinux' or
+         ansible_distribution == 'CentOS' or
+         ansible_distribution == 'Linux Mint' or
+         ansible_distribution == 'Fedora')
+
+- name: Tools for Archlinux
+  block:
+    - import_tasks: arch_tools.yml
+  when: ansible_distribution == 'Archlinux'
