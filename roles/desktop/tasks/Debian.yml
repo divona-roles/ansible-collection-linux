@@ -40,7 +40,7 @@
   vars:
     packages:
       - google-chrome-stable
-      # - google-chrome-beta
+      - google-chrome-beta
 
 - name: Install graphics applications
   ansible.builtin.apt:
