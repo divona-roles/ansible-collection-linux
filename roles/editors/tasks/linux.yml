@@ -37,24 +37,24 @@
   when:
     - vscode_installation_required
   block:
-    # - name: VSCode | Download archive
-    #   ansible.builtin.unarchive:
-    #     src: "{{ vscode_download_url }}"
-    #     dest: "{{ vscode_dir }}"
-    #     remote_src: true
-
     - name: VSCode | Download archive
-      ansible.builtin.get_url:
-        url: "{{ vscode_download_url }}"
-        dest: "/tmp/code.tgz"
-        mode: 0755
-        # group: "{{ user }}"
-        # owner: "{{ user }}"
-
-    - name: VSCode | Extract archive
       ansible.builtin.unarchive:
-        src: "/tmp/code.tgz"
+        src: "{{ vscode_download_url }}"
         dest: "{{ vscode_dir }}"
+        remote_src: true
+
+    # - name: VSCode | Download archive
+    #   ansible.builtin.get_url:
+    #     url: "{{ vscode_download_url }}"
+    #     dest: "/tmp/code.tgz"
+    #     mode: 0755
+    #     # group: "{{ user }}"
+    #     # owner: "{{ user }}"
+
+    # - name: VSCode | Extract archive
+    #   ansible.builtin.unarchive:
+    #     src: "/tmp/code.tgz"
+    #     dest: "{{ vscode_dir }}"
 
     - name: VSCode | Adding command to user path
       ansible.builtin.file:
