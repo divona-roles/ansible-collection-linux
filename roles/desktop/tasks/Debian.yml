@@ -15,10 +15,8 @@
 ---
 - name: Install X
   ansible.builtin.apt:
-    pkg: "{{ packages }}"
     state: present
-  vars:
-    packages:
+    name:
       - xinit
       - gdm3
 
@@ -35,45 +33,35 @@
 
 - name: Install web applications
   ansible.builtin.apt:
-    pkg: "{{ packages }}"
     state: present
-  vars:
-    packages:
+    name:
       - google-chrome-stable
       - google-chrome-beta
 
 - name: Install graphics applications
   ansible.builtin.apt:
-    pkg: "{{ packages }}"
     state: present
-  vars:
-    packages:
+    name:
       - gimp
       - inkscape
 
 - name: Install video applications
   ansible.builtin.apt:
-    pkg: "{{ packages }}"
     state: present
-  vars:
-    packages:
+    name:
       - vlc
 
 - name: Install communications applications
   ansible.builtin.apt:
-    pkg: "{{ packages }}"
     state: present
-  vars:
-    packages:
+    name:
       - irssi
       - vinagre
       - rdesktop
 
 - name: Install documentation applications
   ansible.builtin.apt:
-    pkg: "{{ packages }}"
     state: present
-  vars:
-    packages:
+    name:
       - libreoffice
       - evince

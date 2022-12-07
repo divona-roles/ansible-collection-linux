@@ -19,10 +19,8 @@
 
 - name: WindowManager | Install i3 and tools
   ansible.builtin.apt:
-    pkg: "{{ packages }}"
     state: present
-  vars:
-    packages:
+    name:
       - i3
       - i3lock
       - dmenu
@@ -40,10 +38,8 @@
 
 - name: WindowManager | Install commons tools
   ansible.builtin.apt:
-    pkg: "{{ packages }}"
     state: present
-  vars:
-    packages:
+    name:
       - conky-all
       - thunar
       - thunar-volman
@@ -51,10 +47,8 @@
 
 - name: WindowManager | Install XFCE
   ansible.builtin.apt:
-    pkg: "{{ packages }}"
     state: present
-  vars:
-    packages:
+    name:
       - xfce4
       # - xfce4-goodies
       - xfce4-notifyd

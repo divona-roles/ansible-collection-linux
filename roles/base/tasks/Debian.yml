@@ -19,10 +19,8 @@
 
 - name: Packages | Install base tools
   ansible.builtin.apt:
-    name: "{{ packages }}"
     state: present
-  vars:
-    packages:
+    name:
       - apt-transport-https
       - ca-certificates
       - curl
@@ -35,10 +33,8 @@
 
 - name: Packages | Install shell tools
   ansible.builtin.apt:
-    name: "{{ packages }}"
     state: present
-  vars:
-    packages:
+    name:
       # - debianutils
       - bash-completion
       - tree
@@ -47,18 +43,15 @@
 
 - name: Packages | Install terminal emulators
   ansible.builtin.apt:
-    pkg: "{{ packages }}"
     state: present
-  vars:
-    packages:
+    name:
       - terminator
+      - alacritty
 
 - name: Packages | Install networks tools
   ansible.builtin.apt:
-    name: "{{ packages }}"
     state: present
-  vars:
-    packages:
+    name:
       - openssh-server
       - wget
       - curl

@@ -19,34 +19,32 @@
 
 - name: APT | Install Docker requirements
   ansible.builtin.apt:
-    name: "{{ packages }}"
     state: present
-  vars:
-    packages:
+    name:
       - apt-transport-https
       - ca-certificates
       - curl
       - gnupg2
       - software-properties-common
 
-# - name: APT | Add Docker apt key
-#   ansible.builtin.apt_key:
-#     id: 9DC858229FC7DD38854AE2D88D81803C0EBFCD88
-#     url: "https://download.docker.com/linux/ubuntu/gpg"
-#     state: present
+- name: Add Docker GPG apt Key
+  ansible.builtin.apt_key:
+    url: "https://download.docker.com/linux/{{ ansible_distribution | lower }}/gpg"
+    state: present
 
-# - name: APT | Add Docker repository
-#   ansible.builtin.apt_repository:
-#     repo: "deb [arch=amd64] https://download.docker.com/linux/debian stretch stable"
-#     filename: 'docker'
-#     state: present
+- name: Add Docker Repository
+  ansible.builtin.apt_repository:
+    # repo: deb https://download.docker.com/linux/ubuntu focal stable
+    # state: present
+    repo: "deb [arch={{ ansible_architecture }}] https://download.docker.com/linux/{{ ansible_distribution | lower }} {{ ansible_distribution_release }} stable"
+    state: present
+    filename: docker
 
 - name: APT | Install Docker tools
   ansible.builtin.apt:
-    name: "{{ packages }}"
     state: present
-  vars:
-    packages:
+    update_cache: true
+    name:
       - docker-ce
       - docker-ce-cli
       - containerd.io
