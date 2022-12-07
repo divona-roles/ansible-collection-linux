@@ -37,10 +37,6 @@
   when:
     - vscode_installation_required
   block:
-    - name: VSCode | Upgrade
-      ansible.builtin.debug:
-        msg: VSCode from {{ installed_vscode_version.stdout }} to {{ vscode_version }}
-
     - name: VSCode | Download archive
       ansible.builtin.unarchive:
         src: "{{ vscode_download_url }}"
