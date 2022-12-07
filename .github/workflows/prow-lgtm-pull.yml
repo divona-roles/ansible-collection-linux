@@ -12,22 +12,14 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
----
-- name: Finish
-  block:
-    - include_tasks: unix.yml
-  when: (ansible_distribution == 'Debian' or
-         ansible_distribution == 'Archlinux' or
-         ansible_distribution == 'CentOS' or
-         ansible_distribution == 'Linux Mint' or
-         ansible_distribution == 'Fedora')
-  become: true
-  become_user: root
+name: Prow / Run Jobs on PR
+on: pull_request
 
-- name: Include OS-specific tasks
-  block:
-    - include_tasks: "Debian.yml"
-  when: (ansible_distribution == 'Debian' or
-         ansible_distribution == 'Linux Mint')
-  become: true
-  become_user: root
+jobs:
+  execute:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: jpmcb/prow-github-actions@v1.1.3
+        with:
+          jobs: 'lgtm'
+          github-token: "${{ secrets.GITHUB_TOKEN }}"

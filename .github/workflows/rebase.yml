@@ -12,22 +12,22 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
----
-- name: Finish
-  block:
-    - include_tasks: unix.yml
-  when: (ansible_distribution == 'Debian' or
-         ansible_distribution == 'Archlinux' or
-         ansible_distribution == 'CentOS' or
-         ansible_distribution == 'Linux Mint' or
-         ansible_distribution == 'Fedora')
-  become: true
-  become_user: root
-
-- name: Include OS-specific tasks
-  block:
-    - include_tasks: "Debian.yml"
-  when: (ansible_distribution == 'Debian' or
-         ansible_distribution == 'Linux Mint')
-  become: true
-  become_user: root
+name: Projet / Rebase
+on:
+  issue_comment:
+    types: [created]
+jobs:
+  rebase:
+    name: Rebase
+    if: github.event.issue.pull_request != '' && contains(github.event.comment.body, '/rebase')
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout the latest code
+        uses: actions/checkout@v3
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          fetch-depth: 0 # otherwise, you will fail to push refs to dest repo
+      - name: Automatic Rebase
+        uses: cirrus-actions/rebase@1.7
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
