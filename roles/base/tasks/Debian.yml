@@ -41,10 +41,10 @@
       - tmux
       - ncdu
 
-- name: System | Alacritty PPA
-  ansible.builtin.apt_repository:
-    repo: "ppa:aslatter/ppa"
-    codename: aslatter
+# - name: System | Alacritty PPA
+#   ansible.builtin.apt_repository:
+#     repo: "ppa:aslatter/ppa"
+#     codename: aslatter
 
 - name: Packages | Install terminal emulators
   ansible.builtin.apt:
@@ -52,7 +52,7 @@
     update_cache: true
     name:
       - terminator
-      - alacritty
+      # - alacritty
 
 - name: Packages | Install networks tools
   ansible.builtin.apt:
