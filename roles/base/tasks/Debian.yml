@@ -14,11 +14,11 @@
 
 ---
 - name: APT | Update database
-  apt:
+  ansible.builtin.apt:
     update_cache: true
 
 - name: Packages | Install shell tools
-  apt:
+  ansible.builtin.apt:
     name: "{{ packages }}"
     state: present
   vars:
@@ -30,7 +30,7 @@
       - ncdu
 
 - name: Packages | Install terminal emulators
-  apt:
+  ansible.builtin.apt:
     pkg: "{{ packages }}"
     state: present
   vars:
@@ -38,7 +38,7 @@
       - terminator
 
 - name: Packages | Install networks tools
-  apt:
+  ansible.builtin.apt:
     name: "{{ packages }}"
     state: present
   vars:
@@ -49,7 +49,7 @@
       - ngrep
 
 - name: Packages | Install defaults packages
-  apt:
+  ansible.builtin.apt:
     name: "{{ packages }}"
     state: present
   vars:

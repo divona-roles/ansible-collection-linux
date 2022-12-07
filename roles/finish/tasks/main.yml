@@ -12,6 +12,8 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
+# https://docs.ansible.com/ansible/latest/playbook_guide/playbooks_conditionals.html#ansible-distribution
+
 ---
 - name: Finish
   block:
@@ -26,8 +28,9 @@
 
 - name: Include OS-specific tasks
   block:
-    - include_tasks: "Debian.yml"
+    - include_tasks: "{{ ansible_os_family }}.yml"
   when: (ansible_distribution == 'Debian' or
-         ansible_distribution == 'Linux Mint')
+    ansible_distribution == 'Ubuntu' or
+    ansible_distribution == 'Linux Mint')
   become: true
   become_user: root

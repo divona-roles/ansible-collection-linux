@@ -14,7 +14,7 @@
 
 ---
 - name: Packages | Install shell tools
-  dnf:
+  ansible.builtin.dnf:
     name: "{{ packages }}"
     state: present
   vars:
@@ -27,7 +27,7 @@
       - feh
 
 - name: Packages | Install terminal emulators
-  dnf:
+  ansible.builtin.dnf:
     name: "{{ packages }}"
     state: present
   vars:
@@ -35,7 +35,7 @@
       - terminator
 
 - name: Packages | Install network tools
-  dnf:
+  ansible.builtin.dnf:
     name: "{{ packages }}"
     state: present
   vars:
@@ -46,7 +46,7 @@
       - ngrep
 
 - name: Packages | Install defaults packages
-  dnf:
+  ansible.builtin.dnf:
     name: "{{ packages }}"
     state: present
   vars:
@@ -64,7 +64,7 @@
       - ccze
 
 - name: Packages | Install modern Unix tools
-  dnf:
+  ansible.builtin.dnf:
     name: "{{ packages }}"
     state: present
   vars:

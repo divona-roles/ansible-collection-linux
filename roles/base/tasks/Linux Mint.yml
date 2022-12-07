@@ -13,8 +13,12 @@
 # limitations under the License.
 
 ---
+- name: APT | Update database
+  ansible.builtin.apt:
+    update_cache: true
+
 - name: Packages | Install shell tools
-  apt:
+  ansible.builtin.apt:
     name: "{{ packages }}"
     state: present
   vars:
@@ -26,7 +30,7 @@
       - feh
 
 - name: Packages | Install terminal emulators
-  apt:
+  ansible.builtin.apt:
     name: "{{ packages }}"
     state: present
   vars:
@@ -34,7 +38,7 @@
       - terminator
 
 - name: Packages | Install networks tools
-  apt:
+  ansible.builtin.apt:
     name: "{{ packages }}"
     state: present
   vars:
@@ -45,7 +49,7 @@
       - ngrep
 
 - name: Packages | Install defaults packages
-  apt:
+  ansible.builtin.apt:
     name: "{{ packages }}"
     state: present
   vars:

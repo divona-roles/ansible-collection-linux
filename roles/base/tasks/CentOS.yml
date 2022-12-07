@@ -14,7 +14,7 @@
 
 ---
 - name: YUM | Install EPEL Repository
-  yum:
+  ansible.builtin.yum:
     name: "{{ packages }}"
     state: present
   vars:
@@ -40,7 +40,7 @@
     enabled: true
 
 - name: Packages | Install shell tools
-  yum:
+  ansible.builtin.yum:
     name: "{{ packages }}"
     state: present
   vars:
@@ -51,7 +51,7 @@
       - ncdu
 
 - name: Packages | Install default packages
-  yum:
+  ansible.builtin.yum:
     name: "{{ packages }}"
     state: present
   vars:
@@ -64,7 +64,7 @@
       - rsyslog
 
 - name: Packages | Install terminal emulators
-  yum:
+  ansible.builtin.yum:
     name: "{{ packages }}"
     state: present
   vars:
@@ -72,7 +72,7 @@
       - terminator
 
 - name: Packages | Install network tools
-  yum:
+  ansible.builtin.yum:
     name: "{{ packages }}"
     state: present
   vars:

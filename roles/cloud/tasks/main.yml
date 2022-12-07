@@ -17,10 +17,11 @@
   block:
     - include_tasks: "{{ ansible_distribution }}.yml"
   when: (ansible_distribution == 'Archlinux' or
-         ansible_distribution == 'CentOS' or
-         ansible_distribution == 'Debian' or
-         ansible_distribution == 'Fedora' or
-         ansible_distribution == 'MacOSX' or
-         ansible_distribution == 'Windows')
+    ansible_distribution == 'CentOS' or
+    ansible_distribution == 'Debian' or
+    ansible_distribution == 'Ubuntu' or
+    ansible_distribution == 'Fedora' or
+    ansible_distribution == 'MacOSX' or
+    ansible_distribution == 'Windows')
   become: true
   become_user: root

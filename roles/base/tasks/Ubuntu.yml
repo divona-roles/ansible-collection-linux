@@ -13,54 +13,54 @@
 # limitations under the License.
 
 ---
-- name: Install web applications
+- name: APT | Update database
   ansible.builtin.apt:
-    pkg: "{{ packages }}"
+    update_cache: true
+
+- name: Packages | Install shell tools
+  ansible.builtin.apt:
+    name: "{{ packages }}"
     state: present
   vars:
     packages:
-      - chromium-browser
+      - bash-completion
+      - tree
+      - tmux
+      - ncdu
+      - feh
 
-- name: Install multimedia applications
+- name: Packages | Install terminal emulators
   ansible.builtin.apt:
-    pkg: "{{ packages }}"
+    name: "{{ packages }}"
     state: present
   vars:
     packages:
-      - gimp
-      - inkscape
+      - terminator
 
-- name: Install video applications
+- name: Packages | Install networks tools
   ansible.builtin.apt:
-    pkg: "{{ packages }}"
+    name: "{{ packages }}"
     state: present
   vars:
     packages:
-      - vlc
+      - openssh-server
+      - wget
+      - curl
+      - ngrep
 
-- name: Install communications applications
+- name: Packages | Install defaults packages
   ansible.builtin.apt:
-    pkg: "{{ packages }}"
+    name: "{{ packages }}"
     state: present
   vars:
     packages:
-      - irssi
-      - vinagre
-      - rdesktop
-
-- name: Install documentation applications
-  ansible.builtin.apt:
-    pkg: "{{ packages }}"
-    state: present
-  vars:
-    packages:
-      - evince
-
-# TODO: Install Keepassxc for LinuxMint
-# - name: Add Keepassxc PPA
-#   apt_repository: repo=ppa:phoerious/keepassxc
-
-# - name: Install security tools
-#   ansible.builtin.apt: pkg={{ packages }} state=present update_cache=yes
-#   with_packagess:
-#     - keepassxc
+      - man-db
+      - dunst
+      - git
+      - gnupg
+      - tig
+      - unzip
+      - logrotate
+      - rsyslog
+      - sysstat
+      - mlocate
