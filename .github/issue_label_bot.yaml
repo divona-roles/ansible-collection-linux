@@ -12,7 +12,7 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
----
-- name: APT | Remove useless packages from the cache
-  ansible.builtin.apt:
-    autoclean: true
+label-alias:
+  bug: 'kind/bug'
+  feature_request: 'kind/feature'
+  question: 'kind/question'

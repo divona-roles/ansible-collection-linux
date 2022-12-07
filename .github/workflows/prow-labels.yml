@@ -12,14 +12,28 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
----
-collections:
-  - name: community.general
-    version: 6.0.0
-  # - name: kewlfft.aur
+# name: "Label PRs from globs"
+# on:
+#   schedule:
+#   - cron: "0 * * * *"
 
-roles:
-  - src: gantsign.golang
-    version: 3.0.3
-  # https://github.com/hurricanehrndz/ansible-rustup/issues/4
-  - src: hurricanehrndz.rustup
+# jobs:
+#   execute:
+#     runs-on: ubuntu-latest
+#     steps:
+#       - uses: jpmcb/prow-github-actions@v1.1.1
+#         with:
+#           jobs: 'pr-labeler'
+#           github-token: "${{ secrets.GITHUB_TOKEN }}"
+
+name: Prow / Pull Request Labeler
+on:
+- pull_request_target
+
+jobs:
+  triage:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/labeler@main
+      with:
+        repo-token: "${{ secrets.GITHUB_TOKEN }}"

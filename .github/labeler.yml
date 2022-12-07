@@ -12,14 +12,10 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
----
-collections:
-  - name: community.general
-    version: 6.0.0
-  # - name: kewlfft.aur
+# Labels for action/labeler
 
-roles:
-  - src: gantsign.golang
-    version: 3.0.3
-  # https://github.com/hurricanehrndz/ansible-rustup/issues/4
-  - src: hurricanehrndz.rustup
+area/ansible:
+  - defaults/*
+  - tasks/*
+  - handlers/*
+  - vars/*

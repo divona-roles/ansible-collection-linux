@@ -12,14 +12,22 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
----
-collections:
-  - name: community.general
-    version: 6.0.0
-  # - name: kewlfft.aur
-
-roles:
-  - src: gantsign.golang
-    version: 3.0.3
-  # https://github.com/hurricanehrndz/ansible-rustup/issues/4
-  - src: hurricanehrndz.rustup
+name: Projet / Rebase
+on:
+  issue_comment:
+    types: [created]
+jobs:
+  rebase:
+    name: Rebase
+    if: github.event.issue.pull_request != '' && contains(github.event.comment.body, '/rebase')
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout the latest code
+        uses: actions/checkout@v3
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          fetch-depth: 0 # otherwise, you will fail to push refs to dest repo
+      - name: Automatic Rebase
+        uses: cirrus-actions/rebase@1.7
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

@@ -26,7 +26,7 @@
 
 - name: Include OS-specific tasks
   block:
-    - include_tasks: "{{ ansible_distribution }}.yml"
+    - include_tasks: "Debian.yml"
   when: (ansible_distribution == 'Debian' or
          ansible_distribution == 'Linux Mint')
   become: true

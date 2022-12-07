@@ -12,14 +12,29 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
----
-collections:
-  - name: community.general
-    version: 6.0.0
-  # - name: kewlfft.aur
+# labels to be used with /area command
+area:
+  - 'ansible'
+  - 'github'
 
-roles:
-  - src: gantsign.golang
-    version: 3.0.3
-  # https://github.com/hurricanehrndz/ansible-rustup/issues/4
-  - src: hurricanehrndz.rustup
+kind:
+  - 'documentation'
+  - 'discussion'
+  - 'feature'
+  - 'question'
+
+priority:
+  - 'low'
+  - 'medium'
+  - 'high'
+  - 'critical'
+
+status:
+  - available
+  - blocked
+  - in_progress
+  - on_hold
+
+# File globs for PR labeler
+# tests:
+#   - '**/*.test.ts'
