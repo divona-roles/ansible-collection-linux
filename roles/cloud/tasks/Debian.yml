@@ -17,18 +17,6 @@
   ansible.builtin.apt:
     update_cache: true
 
-- name: APT | Install Docker requirements
-  ansible.builtin.apt:
-    name: "{{ packages }}"
-    state: present
-  vars:
-    packages:
-      - apt-transport-https
-      - ca-certificates
-      - curl
-      - gnupg2
-      - software-properties-common
-
 - name: APT | Add Docker apt key
   ansible.builtin.apt_key:
     id: 9DC858229FC7DD38854AE2D88D81803C0EBFCD88
@@ -41,7 +29,7 @@
     filename: 'docker'
     state: present
 
-- name: APT | Install docker-engine
+- name: Packages | Install docker-engine
   ansible.builtin.apt:
     name: "docker-ce"
     state: present
@@ -57,7 +45,7 @@
     filename: 'contrib'
     state: present
 
-- name: APT | Install Virtualbox
+- name: Packages | Install Virtualbox
   ansible.builtin.apt:
     name: virtualbox-5.2
     state: present

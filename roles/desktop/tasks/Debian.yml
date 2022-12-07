@@ -22,13 +22,25 @@
       - xinit
       - gdm3
 
+- name: Apt | Add Apt signing key
+  ansible.builtin.apt_key:
+    url: "https://dl.google.com/linux/linux_signing_key.pub"
+    state: present
+
+- name: Apt | Add repository into sources list
+  ansible.builtin.apt_repository:
+    repo: deb [arch=amd64] http://dl.google.com/linux/chrome/deb/ stable main
+    state: present
+    filename: google-chrome
+
 - name: Install web applications
   ansible.builtin.apt:
     pkg: "{{ packages }}"
     state: present
   vars:
     packages:
-      - chromium
+      - google-chrome-stable
+      # - google-chrome-beta
 
 - name: Install graphics applications
   ansible.builtin.apt:

@@ -17,13 +17,25 @@
   ansible.builtin.apt:
     update_cache: true
 
+- name: Packages | Install base tools
+  ansible.builtin.apt:
+    name: "{{ packages }}"
+    state: present
+  vars:
+    packages:
+      - apt-transport-https
+      - ca-certificates
+      - curl
+      - gnupg2
+      - software-properties-common
+
 - name: Packages | Install shell tools
   ansible.builtin.apt:
     name: "{{ packages }}"
     state: present
   vars:
     packages:
-      - debianutils
+      # - debianutils
       - bash-completion
       - tree
       - tmux
