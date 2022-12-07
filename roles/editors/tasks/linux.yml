@@ -48,8 +48,8 @@
         url: "{{ vscode_download_url }}"
         dest: "/tmp/code.tgz"
         mode: 0755
-        group: "{{ user }}"
-        owner: "{{ user }}"
+        # group: "{{ user }}"
+        # owner: "{{ user }}"
 
     - name: VSCode | Extract archive
       ansible.builtin.unarchive:
