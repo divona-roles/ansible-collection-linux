@@ -40,6 +40,11 @@
     state: present
     filename: docker
 
+- name: System | Only run "update_cache=yes" if the last one is more than 3600 seconds ago
+  ansible.builtin.apt:
+    update_cache: yes
+    cache_valid_time: 3600
+
 - name: APT | Install Docker tools
   ansible.builtin.apt:
     state: present
@@ -49,6 +54,18 @@
       - docker-ce-cli
       - containerd.io
       - docker-compose-plugin
+
+- name: System | Start and enable docker daemon
+  ansible.builtin.service:
+    name: docker
+    state: started
+    enabled: yes
+
+- name: System | Start and enable containerd daemon
+  ansible.builtin.service:
+    name: containerd
+    state: started
+    enabled: yes
 
 # - name: APT | Install Oracle Virtualbox public key
 #   ansible.builtin.apt_key:

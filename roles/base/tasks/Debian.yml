@@ -30,6 +30,7 @@
       - tar
       - git
       - unzip
+      - lsb-release
 
 - name: Packages | Install shell tools
   ansible.builtin.apt:
