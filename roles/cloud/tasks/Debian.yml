@@ -24,15 +24,16 @@
     state: present
     filename: docker
 
-- name: Install Docker
-  ansible.builtin.apt:
-    name:
-      - docker
-      - docker.io
-      - docker-compose
-      - docker-registry
-    state: latest
-    update_cache: true
+# FIXME: docker-ce not found
+# - name: Install Docker
+#   ansible.builtin.apt:
+#     name:
+#       - docker-ce
+#       - docker.io
+#       - docker-compose
+#       - docker-registry
+#     state: latest
+#     update_cache: true
 
 # - name: APT | Install Oracle Virtualbox public key
 #   ansible.builtin.apt_key:
