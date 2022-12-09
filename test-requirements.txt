@@ -1,5 +1,5 @@
 # temporarily lock versions of molecule and ansible-compat to avoid a bug:
-ansible-compat==0.5.0
+ansible-compat==2.2.7
 molecule==3.5.2
 molecule-docker
 docker
