@@ -162,6 +162,18 @@
       - btop
       - kmon
 
+- name: Security | Install security tools
+  community.general.pacman:
+    name: "{{ packages }}"
+    state: present
+  vars:
+    packages:
+      - gnupg
+      - pcsclite
+      - ccid
+      - yubikey-personalization
+      # - hopenpgp-tools
+
 - name: Laptop | Install powermanagement
   community.general.pacman:
     name:
@@ -186,7 +198,7 @@
 #     create: yes
 #     validate: 'visudo -cf %s'
 
-- name: Python | Install tools
+- name: Python | Setup
   community.general.pacman:
     name: "{{ packages }}"
     state: present
@@ -196,7 +208,7 @@
       - python-virtualenv
       - python-poetry
 
-- name: Ruby | Install tools
+- name: Ruby | Setup
   community.general.pacman:
     name: "{{ packages }}"
     state: present
@@ -204,14 +216,18 @@
     packages:
       - rubygems
 
-- name: Yubikey | Install tools
+- name: Golang | Setup
   community.general.pacman:
     name: "{{ packages }}"
     state: present
   vars:
     packages:
-      - gnupg
-      - pcsclite
-      - ccid
-      - yubikey-personalization
-      # - hopenpgp-tools
+      - go
+
+- name: Rust | Setup
+  community.general.pacman:
+    name: "{{ packages }}"
+    state: present
+  vars:
+    packages:
+      - rustup
