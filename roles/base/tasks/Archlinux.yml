@@ -52,6 +52,7 @@
   vars:
     packages:
       - bash-completion
+      - bash-language-server
 
 - name: Shell | Install Zsh
   community.general.pacman:
@@ -207,6 +208,7 @@
       - python-pip
       - python-virtualenv
       - python-poetry
+      - python-lsp-server
 
 - name: Ruby | Setup
   community.general.pacman:
@@ -223,6 +225,7 @@
   vars:
     packages:
       - go
+      - gopls
 
 - name: Rust | Setup
   community.general.pacman:
@@ -231,3 +234,14 @@
   vars:
     packages:
       - rustup
+      - rust-analyzer
+
+- name: Languages | Setup
+  community.general.pacman:
+    name: "{{ packages }}"
+    state: present
+  vars:
+    packages:
+      - neovim-lspconfig
+      - yaml-language-server
+      - vscode-json-languageserver
