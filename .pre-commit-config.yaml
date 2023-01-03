@@ -36,14 +36,14 @@ repos:
   rev: v1.1.10
   hooks:
   - id: insert-license
-    files: \.yaml
+    files: (Makefile|\.yaml|\.yml|\.yamllint|.ansible-lint|\.toml)
     args:
     - --license-filepath
     - LICENSE
     # - --remove-header
-  - id: insert-license
-    files: \.yml
-    args:
-    - --license-filepath
-    - LICENSE
-    # - --remove-header
+  # - id: insert-license
+  #   files: \.yml
+  #   args:
+  #   - --license-filepath
+  #   - LICENSE
+  #   # - --remove-header
