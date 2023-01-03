@@ -111,6 +111,22 @@
       "matchUpdateTypes": ["patch"],
       "labels": ["kind/renovate", "lifecycle/active", "status/review_needed", "dependency/github", "priority/low", "size/xs"]
     },
+    // Labels for Python
+    {
+      "packagePatterns": ["pip", "poetry"],
+      "matchUpdateTypes": ["major"],
+      "labels": ["kind/renovate", "lifecycle/active", "status/review_needed", "dependency/python", "priority/high", "size/xs"]
+    },
+    {
+      "packagePatterns": ["pip", "poetry"],
+      "matchUpdateTypes": ["minor"],
+      "labels": ["kind/renovate", "lifecycle/active", "status/review_needed", "dependency/python", "priority/medium", "size/xs"]
+    },
+    {
+      "packagePatterns": ["pip", "poetry"],
+      "matchUpdateTypes": ["patch"],
+      "labels": ["kind/renovate", "lifecycle/active", "status/review_needed", "dependency/python", "priority/low", "size/xs"]
+    },
     // Enable auto-merge docker
     // {
     //   "datasources": ["docker"],
