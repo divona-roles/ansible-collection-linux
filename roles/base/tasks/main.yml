@@ -35,4 +35,5 @@
 - name: Tools for Archlinux
   when: ansible_distribution == 'Archlinux'
   block:
-    - ansible.builtin.include_tasks: arch_tools.yml
+    - name: Base | Archlinux specific
+      ansible.builtin.include_tasks: arch_tools.yml
