@@ -28,7 +28,6 @@
 - name: System | Set timezone
   community.general.timezone:
     name: "{{ timesync_timezone }}"
-  # notify: systemd-timesyncd configuration changed
 
 - name: System | Configure systemd-timesyncd
   ansible.builtin.template:
