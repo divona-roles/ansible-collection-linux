@@ -184,8 +184,6 @@
       - bluez-tools
       - blueman
       - gnome-bluetooth
-  # notify:
-  #   - Bluetooth service
 
 - name: System | Enable bluetooth service
   ansible.builtin.service:
