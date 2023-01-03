@@ -40,17 +40,6 @@
     state: present
     filename: docker
 
-# FIXME: docker-ce not found
-# - name: APT | Install Docker tools
-#   ansible.builtin.apt:
-#     state: present
-#     update_cache: true
-#     name:
-#       - docker-ce
-#       - docker-ce-cli
-#       - containerd.io
-#       - docker-compose-plugin
-
 - name: System | Start and enable docker daemon
   ansible.builtin.service:
     name: docker
@@ -62,19 +51,3 @@
     name: containerd
     state: started
     enabled: true
-
-# - name: APT | Install Oracle Virtualbox public key
-#   ansible.builtin.apt_key:
-#     url: https://www.virtualbox.org/download/oracle_vbox_2016.asc
-#     state: present
-
-# - name: APT | Add third-party repository
-#   ansible.builtin.apt_repository:
-#     repo: "deb http://download.virtualbox.org/virtualbox/debian stretch contrib"
-#     filename: 'contrib'
-#     state: present
-
-# - name: APT | Install Virtualbox
-#   ansible.builtin.apt:
-#     name: virtualbox-5.2
-#     state: present

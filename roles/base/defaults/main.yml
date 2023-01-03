@@ -23,7 +23,7 @@ timesync_fallback_ntp_hosts:
   - 3.pool.ntp.org
 timesync_write_hwclock_on_change: true
 
-#datasource=github-tags depName=Jguer/yay
+# datasource=github-tags depName=Jguer/yay
 yay_version: v11.1.2
 yay_package_name: "yay_{{ yay_version }}_x86_64.tar.gz"
 yay_download_url: https://github.com/Jguer/yay/releases/download/v{{ yay_version }}/yay_{{ yay_version }}_x86_64.tar.gz
