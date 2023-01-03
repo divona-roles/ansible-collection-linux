@@ -22,21 +22,21 @@
       - epel-release
 
 - name: YUM | Enable Nux-Desktop repository
-  yum_repository:
+  ansible.builtin.yum_repository:
     name: nux-dextop
     description: Nux.Ro RPMs for general desktop use
-    baseurl: "{{ nux_url }} {{ nux_mirror url }}"
+    baseurl: "{{ nux_url }}"
     gpgkey: http://li.nux.ro/download/nux/RPM-GPG-KEY-nux.ro
     gpgcheck: true
     skip_if_unavailable: true
 
 - name: YUM | Enable Repoforge repository
-  yum_repository:
+  ansible.builtin.yum_repository:
     name: rpmforge
     description: RPMforge YUM repo
     file: external_repos
-    baseurl: http://apt.sw.be/redhat/el{{ ansible_distribution_major_version }}/en/$basearch/rpmforge
-    mirrorlist: http://mirrorlist.repoforge.org/el{{ ansible_distribution_major_version }}/mirrors-rpmforge
+    baseurl: "http://apt.sw.be/redhat/el{{ ansible_distribution_major_version }}/en/$basearch/rpmforge"
+    mirrorlist: "http://mirrorlist.repoforge.org/el{{ ansible_distribution_major_version }}/mirrors-rpmforge"
     enabled: true
 
 - name: Packages | Install shell tools

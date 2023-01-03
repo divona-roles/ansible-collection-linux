@@ -18,8 +18,6 @@
     msg: System {{ ansible_distribution }}
 
 - name: Directories for Unix
-  block:
-    - include_tasks: unix.yml
   when: (ansible_distribution == 'Debian' or
     ansible_distribution == 'Ubuntu' or
     ansible_distribution == 'Linux Mint' or
@@ -28,30 +26,14 @@
     ansible_distribution == 'Fedora')
   become: true
   become_user: root
-
-- name: Include OS-specific tasks
   block:
-    - include_tasks: "{{ ansible_os_family }}.yml"
-  when: (ansible_distribution == 'Archlinux' or
-    ansible_distribution == 'CentOS' or
-    ansible_distribution == 'Debian' or
-    ansible_distribution == 'Ubuntu' or
-    ansible_distribution == 'Linux Mint' or
-    ansible_distribution == 'Fedora')
-  become: true
-  become_user: root
-
-- name: Tools for Linux
-  block:
-    - include_tasks: "linux.yml"
-  when: (ansible_distribution == 'Debian' or
-    ansible_distribution == 'Ubuntu' or
-    ansible_distribution == 'Linux Mint' or
-    ansible_distribution == 'Archlinux' or
-    ansible_distribution == 'CentOS' or
-    ansible_distribution == 'Fedora')
+    - name: Base | Unix directories
+      ansible.builtin.include_tasks: unix.yml
+    - name: Base | Core
+      ansible.builtin.include_tasks: "{{ ansible_os_family }}.yml"
 
 - name: Tools for Archlinux
-  block:
-    - import_tasks: arch_tools.yml
   when: ansible_distribution == 'Archlinux'
+  block:
+    - name: Base | Archlinux specific
+      ansible.builtin.include_tasks: arch_tools.yml

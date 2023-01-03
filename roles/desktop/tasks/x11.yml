@@ -14,19 +14,19 @@
 
 ---
 - name: Create X11 directory
-  file:
+  ansible.builtin.file:
     path: /etc/X11/xorg.conf.d
     state: directory
     mode: 0755
 
 - name: Setup X11 for French
-  copy:
+  ansible.builtin.copy:
     src: 10-keyboard-layout.conf
     dest: /etc/X11/xorg.conf.d/10-keyboard-layout.conf
     mode: 0644
 
 - name: Setup vconsole for French
-  copy:
+  ansible.builtin.copy:
     src: vconsole.conf
     dest: /etc/vconsole.conf
     mode: 0644

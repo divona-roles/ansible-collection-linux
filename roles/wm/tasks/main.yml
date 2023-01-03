@@ -16,8 +16,6 @@
 
 ---
 - name: Include OS-specific tasks
-  block:
-    - include_tasks: "{{ ansible_os_family }}.yml"
   when: (ansible_distribution == 'Archlinux' or
     ansible_distribution == 'CentOS' or
     ansible_distribution == 'Debian' or
@@ -25,3 +23,6 @@
     ansible_distribution == 'Fedora')
   become: true
   become_user: root
+  block:
+    - name: WindowManager | Core
+      ansible.builtin.include_tasks: "{{ ansible_os_family }}.yml"

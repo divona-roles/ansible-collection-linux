@@ -27,14 +27,7 @@
       - slim
       - slim-themes
       - archlinux-themes-slim
-      # - lxdm
-      # - lxdm-gtk3
       - sddm
-      # - lightdm
-      # - lightdm-gtk-greeter-settings
-      # - lightdm-webkit2-greeter
-      # - lightdm-webkit-theme-litarvan
-      # - light-locker
       - xss-lock
       - clipmenu
       - clipnotify
@@ -48,26 +41,14 @@
 - name: Systemd | Enable display manager
   ansible.builtin.service:
     name: sddm
-    enabled: yes
-  ignore_errors: yes
+    enabled: true
+  failed_when: false
 
 - name: Systemd | Start display manager
   ansible.builtin.service:
     name: sddm
     state: started
-  ignore_errors: yes
-
-# - name: Install web browsers (with Yay)
-#   kewlfft.aur.aur:
-#     name: "{{ packages }}"
-#     use: makepkg
-#     state: present
-#   become: yes
-#   become_user: aur_builder
-#   vars:
-#     packages:
-#       - google-chrome-beta
-#       # - brave
+  failed_when: false
 
 - name: Install | Graphics applications
   community.general.pacman:
@@ -86,7 +67,7 @@
   vars:
     packages:
       - vlc
-      - libmicrodns # For Chromecast
+      - libmicrodns
 
 - name: Install | Music applications
   community.general.pacman:
@@ -98,16 +79,6 @@
       - pavucontrol
       - pulsemixer
       - playerctl
-
-# - name: Install music applications with Yay
-#   community.general.pacman:
-#     name: "{{ packages }}"
-#     state: present
-#     executable: yay
-#     # extra_args: --builddir /var/cache/yay
-#   vars:
-#     packages:
-#       - spotify
 
 - name: Install | Communications applications
   community.general.pacman:
@@ -213,12 +184,10 @@
       - bluez-tools
       - blueman
       - gnome-bluetooth
-  # notify:
-  #   - Bluetooth service
 
 - name: System | Enable bluetooth service
   ansible.builtin.service:
-    enabled: yes
+    enabled: true
     name: bluetooth
 
 - name: System | Bluetooth service
