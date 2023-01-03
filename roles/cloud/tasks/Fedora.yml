@@ -23,7 +23,7 @@
       - VirtualBox
 
 - name: YUM | Install yum utils
-  yum:
+  ansible.builtin.yum:
     name: yum-utils
     state: present
 
@@ -41,6 +41,7 @@
   ansible.builtin.get_url:
     url: https://download.docker.com/linux/centos/docker-ce.repo
     dest: /etc/yum.repos.d/docer-ce.repo
+    mode: '0600'
 
 - name: System | Enable Docker Edge repo
   community.general.ini_file:
@@ -59,7 +60,7 @@
     value: "0"
 
 - name: System | Install Docker
-  yum:
+  ansible.builtin.yum:
     name: docker-ce
     state: present
 

@@ -49,13 +49,13 @@
   ansible.builtin.service:
     name: sddm
     enabled: true
-  ignore_errors: true
+  failed_when: false
 
 - name: Systemd | Start display manager
   ansible.builtin.service:
     name: sddm
     state: started
-  ignore_errors: true
+  failed_when: false
 
 # - name: Install web browsers (with Yay)
 #   kewlfft.aur.aur:

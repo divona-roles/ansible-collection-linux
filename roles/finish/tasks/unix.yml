@@ -27,17 +27,17 @@
 # limitations under the License.
 ---
 - name: Directory | Change applications directory rights
-  file:
+  ansible.builtin.file:
     path: /home/{{ user }}/Applications
     state: directory
     owner: "{{ user }}"
     group: "{{ user }}"
-    # recurse: true
+    mode: 0755
 
 - name: Directory | Change user binaries directory rights
-  file:
+  ansible.builtin.file:
     path: /home/{{ user }}/bin
     state: directory
     owner: "{{ user }}"
     group: "{{ user }}"
-    # recurse: true
+    mode: 0755
