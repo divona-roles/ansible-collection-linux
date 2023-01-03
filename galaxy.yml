@@ -17,14 +17,14 @@ name: linux
 version: 0.1.0
 readme: README.md
 authors:
-- Nicolas Lamirault <nicolas.lamirault@gmail.com>
+  - Nicolas Lamirault <nicolas.lamirault@gmail.com>
 description: your collection description
 license:
-- Apache-2.0
+  - Apache-2.0
 license_file: LICENSE
 tags:
-- linux
-- workstation
+  - linux
+  - workstation
 dependencies: {}
 repository: http://github.com/divona-roles/ansible-collection-linux
 documentation: http://github.com/divona-roles/ansible-collection-linux
