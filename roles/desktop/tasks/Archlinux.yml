@@ -48,21 +48,21 @@
 - name: Systemd | Enable display manager
   ansible.builtin.service:
     name: sddm
-    enabled: yes
-  ignore_errors: yes
+    enabled: true
+  ignore_errors: true
 
 - name: Systemd | Start display manager
   ansible.builtin.service:
     name: sddm
     state: started
-  ignore_errors: yes
+  ignore_errors: true
 
 # - name: Install web browsers (with Yay)
 #   kewlfft.aur.aur:
 #     name: "{{ packages }}"
 #     use: makepkg
 #     state: present
-#   become: yes
+#   become: true
 #   become_user: aur_builder
 #   vars:
 #     packages:
@@ -218,7 +218,7 @@
 
 - name: System | Enable bluetooth service
   ansible.builtin.service:
-    enabled: yes
+    enabled: true
     name: bluetooth
 
 - name: System | Bluetooth service

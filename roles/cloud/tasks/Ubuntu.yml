@@ -55,13 +55,13 @@
   ansible.builtin.service:
     name: docker
     state: started
-    enabled: yes
+    enabled: true
 
 - name: System | Start and enable containerd daemon
   ansible.builtin.service:
     name: containerd
     state: started
-    enabled: yes
+    enabled: true
 
 # - name: APT | Install Oracle Virtualbox public key
 #   ansible.builtin.apt_key:

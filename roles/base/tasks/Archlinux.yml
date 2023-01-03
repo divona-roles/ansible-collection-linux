@@ -42,7 +42,7 @@
 - name: System | Start and enable systemd-timesyncd
   ansible.builtin.systemd:
     name: systemd-timesyncd.service
-    enabled: yes
+    enabled: true
     state: started
 
 - name: Shell | Install Bash
@@ -196,7 +196,7 @@
 #   ansible.builtin.lineinfile:
 #     path: /etc/sudoers.d/11-install-aur_builder
 #     line: 'aur_builder ALL=(ALL) NOPASSWD: /usr/bin/pacman'
-#     create: yes
+#     create: true
 #     validate: 'visudo -cf %s'
 
 - name: Python | Setup

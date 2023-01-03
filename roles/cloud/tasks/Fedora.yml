@@ -72,7 +72,7 @@
 # - name: Start Docker service
 #   systemd:
 #     state: started
-#     daemon_reload: yes
+#     daemon_reload: true
 #     name: docker
 
 - name: System | Add user vagrant to docker group
