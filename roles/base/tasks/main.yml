@@ -35,4 +35,4 @@
 - name: Tools for Archlinux
   when: ansible_distribution == 'Archlinux'
   block:
-    - import_tasks: arch_tools.yml
+    - ansible.builtin.include_tasks: arch_tools.yml
