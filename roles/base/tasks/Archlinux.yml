@@ -94,6 +94,7 @@
       - ccze
       - dmidecode
       - gitui
+      - starship
 
 - name: Packages | Install terminal emulators
   community.general.pacman:
