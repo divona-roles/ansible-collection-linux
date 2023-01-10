@@ -105,7 +105,7 @@
       # - termite
       - alacritty
 
-- name: Packages | Install networks tools
+- name: Packages | Install networking tools
   community.general.pacman:
     name: "{{ packages }}"
     state: present
@@ -176,6 +176,7 @@
       - ccid
       - yubikey-personalization
       # - hopenpgp-tools
+      - rustscan
 
 - name: Laptop | Install powermanagement
   community.general.pacman:
