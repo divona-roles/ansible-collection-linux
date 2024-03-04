@@ -82,6 +82,7 @@
       - screenfetch
       - tree
       - tmux
+      - zellij
       - ncdu
       - feh
       - nnn
