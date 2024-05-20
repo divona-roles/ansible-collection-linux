@@ -17,6 +17,6 @@
 ---
 collections:
   - name: community.general
-    version: 8.5.0
+    version: 8.6.1
 
 roles: []
