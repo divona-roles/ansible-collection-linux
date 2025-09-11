@@ -142,6 +142,7 @@
       - bat
       - lsd
       - diskus
+      - systemd-manager-tui
 
 - name: Packages | Install file system tools
   community.general.pacman:

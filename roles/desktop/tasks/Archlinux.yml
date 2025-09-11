@@ -141,6 +141,7 @@
       - wireguard-tools
       - keepassxc
       - arch-audit
+      - systemd-manager-tui
 
 - name: Install | Torrent tools
   community.general.pacman:
