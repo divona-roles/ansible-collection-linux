@@ -1,2 +1,36 @@
 # SPDX-FileCopyrightText: Copyright (C) Nicolas Lamirault <nicolas.lamirault@gmail.com>
 # SPDX-License-Identifier: Apache-2.0
+
+---
+
+name: Project / Release
+
+on: # yamllint disable-line rule:truthy
+  push:
+    branches:
+    - main
+
+permissions:
+  contents: read
+
+jobs:
+  release-please:
+    permissions:
+      contents: write
+      issues: write
+      pull-requests: write
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout Code
+      uses: actions/checkout@8e8c483db84b4bee98b60c0593521ed34d9990e8 # v6.0.1
+      with:
+        fetch-depth: 0
+
+    - name: Run Release Please Action
+      uses: googleapis/release-please-action@16a9c90856f42705d54a6fda1823352bdc62cf38 # v4.4.0
+      id: release
+      with:
+        token: ${{ steps.generate-token.outputs.token }}
+        target-branch: ${{ github.ref_name }}
+        config-file: .github/release-please-config.json
