@@ -38,5 +38,4 @@ jobs:
     - name: ✅ Lint Ansible Playbook
       uses: ansible-actions/ansible-lint-action@f32438707106decdb067a067e4f026c0e94e3f16 # v1.1.0
       with:
-        args: ""
-        targets: ""
+        target: "./"
