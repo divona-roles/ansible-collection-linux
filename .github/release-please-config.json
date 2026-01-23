@@ -3,7 +3,7 @@
   "packages": {
     ".": {
       "changelog-path": "CHANGELOG.md",
-      "release-type": "<RELEASE_TYPE>"
+      "release-type": "simple"
     }
   },
   "changelog-sections": [
