@@ -1,0 +1,24 @@
+cff-version: 1.2.0
+title: ansible-collection-linux
+message: >-
+  If you use this software, please cite it using the
+  metadata from this file.
+type: software
+authors:
+  - given-names: Nicolas
+    family-names: Lamirault
+    email: nicolas.lamirault@gmail.com
+abstract: >-
+  Ansible collection for Linux workstation configuration and management.
+  Provides roles for base system setup, desktop environments, editors,
+  window managers, and cloud tools.
+keywords:
+  - ansible
+  - linux
+  - workstation
+  - configuration-management
+  - automation
+license: Apache-2.0
+repository-code: https://github.com/divona-roles/ansible-collection-linux
+url: https://github.com/divona-roles/ansible-collection-linux
+version: 0.1.0
