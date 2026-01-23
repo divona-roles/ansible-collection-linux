@@ -10,19 +10,17 @@ on: # yamllint disable-line rule:truthy
     - main
 
 permissions:
-  contents: read
+  contents: write         # to push tags and changelog
+  issues: write           # (optional) for any issue linkage
+  pull-requests: write    # to create/modify the release PR
 
 jobs:
   release-please:
-    permissions:
-      contents: write
-      issues: write
-      pull-requests: write
     runs-on: ubuntu-latest
 
     steps:
     - name: Checkout Code
-      uses: actions/checkout@8e8c483db84b4bee98b60c0593521ed34d9990e8 # v6.0.1
+      uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
       with:
         fetch-depth: 0
 
@@ -30,6 +28,6 @@ jobs:
       uses: googleapis/release-please-action@16a9c90856f42705d54a6fda1823352bdc62cf38 # v4.4.0
       id: release
       with:
-        token: ${{ steps.generate-token.outputs.token }}
+        token: ${{ secrets.GITHUB_TOKEN }}
         target-branch: ${{ github.ref_name }}
         config-file: .github/release-please-config.json
