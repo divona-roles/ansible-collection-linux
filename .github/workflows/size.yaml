@@ -1,27 +1,37 @@
 # SPDX-FileCopyrightText: Copyright (C) Nicolas Lamirault <nicolas.lamirault@gmail.com>
 # SPDX-License-Identifier: Apache-2.0
 
+---
 name: Project / Size PR
 
-on:
+on: # yamllint disable-line rule:truthy
   pull_request:
     types: [opened, synchronize]
 
 jobs:
-  update_labels:
+  labeler:
     runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      issues: write
+      pull-requests: write
+    name: Label the PR size
     steps:
-      - uses: actions/checkout@v6
-
-      - uses: actions-ecosystem/action-size@v2
-        id: size
-
-      - uses: actions-ecosystem/action-remove-labels@v1
-        with:
-          github_token: ${{ secrets.github_token }}
-          labels: ${{ steps.size.outputs.stale_labels }}
-
-      - uses: actions-ecosystem/action-add-labels@v1
-        with:
-          github_token: ${{ secrets.github_token }}
-          labels: ${{ steps.size.outputs.new_label }}
+    - uses: codelytv/pr-size-labeler@4ec67706cd878fbc1c8db0a5dcd28b6bb412e85a # v1.10.3
+      with:
+        xs_label: 'size/xs'
+        xs_max_size: '10'
+        s_label: 'size/s'
+        s_max_size: '100'
+        m_label: 'size/m'
+        m_max_size: '500'
+        l_label: 'size/l'
+        l_max_size: '1000'
+        xl_label: 'size/xl'
+        fail_if_xl: 'false'
+        message_if_xl: >
+          This PR exceeds the recommended size of 1000 lines.
+          Please make sure you are NOT addressing multiple issues with one PR.
+          Note this PR might be rejected due to its size.
+        github_api_url: 'https://api.github.com'
+        files_to_ignore: ''
