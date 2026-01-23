@@ -1,0 +1,23 @@
+# OS-specific
+.DS_Store
+Thumbs.db
+*.swp
+*.swo
+*~
+
+# IDE
+.vscode/
+.idea/
+*.iml
+.project
+.classpath
+.settings/
+
+# Build artifacts
+target/
+dist/
+build/
+*.o
+*.so
+*.dylib
+*.exe
