@@ -18,12 +18,7 @@
 
 ---
 - name: Include OS-specific tasks
-  when: (ansible_distribution == 'Archlinux' or
-    ansible_distribution == 'CentOS' or
-    ansible_distribution == 'Debian' or
-    ansible_distribution == 'Ubuntu' or
-    ansible_distribution == 'Fedora' or
-    ansible_distribution == 'Linux Mint')
+  when: ansible_distribution in ['Archlinux', 'CentOS', 'Debian', 'Ubuntu', 'Fedora', 'Linux Mint']
   become: true
   become_user: root
   block:

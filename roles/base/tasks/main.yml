@@ -20,12 +20,7 @@
     msg: System {{ ansible_distribution }}
 
 - name: Directories for Unix
-  when: (ansible_distribution == 'Debian' or
-    ansible_distribution == 'Ubuntu' or
-    ansible_distribution == 'Linux Mint' or
-    ansible_distribution == 'Archlinux' or
-    ansible_distribution == 'CentOS' or
-    ansible_distribution == 'Fedora')
+  when: ansible_distribution in ['Debian', 'Ubuntu', 'Linux Mint', 'Archlinux', 'CentOS', 'Fedora']
   become: true
   become_user: root
   block:

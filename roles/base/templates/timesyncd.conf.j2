@@ -1,6 +1,6 @@
 # vi: ft=dosini:
 
-# {{ ansible_managed }}
+{{ ansible_managed | comment }}
 
 [Time]
 NTP={{ timesync_ntp_hosts | default("") | join(" ") }}
