@@ -17,7 +17,7 @@ jobs:
       pull-requests: write
     name: Label the PR size
     steps:
-    - uses: codelytv/pr-size-labeler@4ec67706cd878fbc1c8db0a5dcd28b6bb412e85a # v1.10.3
+    - uses: codelytv/pr-size-labeler@19c335e7695ba922de938806dd129f0a9b992644 # v1.12.0
       with:
         xs_label: 'size/xs'
         xs_max_size: '10'
